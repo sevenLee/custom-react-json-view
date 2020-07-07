@@ -124,7 +124,7 @@ class VariableEditor extends React.PureComponent {
         ) : null}
         {onEdit !== false && editMode == false ? this.getEditIcon() : null}
         {onDelete !== false && editMode == false ? this.getRemoveIcon() : null}
-        <div className="click-to-edit">add filter icon</div>
+        {/* <div className="click-to-edit">add filter icon</div> */}
       </div>
     );
   }
