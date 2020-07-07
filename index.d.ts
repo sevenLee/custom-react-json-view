@@ -1,5 +1,9 @@
 import * as React from 'react';
 
+interface IResultItem {
+  [key: string]: string | number | IResultItem | undefined | string[];
+}
+
 export interface ReactJsonViewProps {
   /**
    * This property contains your input JSON.
@@ -122,6 +126,8 @@ export interface ReactJsonViewProps {
    *
    * Default: "Validation Error"
    */
+  onHighLight?: ((kbnHighLight: IResultItem, fieldName: string, fieldValue: any, fallback: any, useEllipsis: boolean) => any) | false;
+  kbnHighLight?: IResultItem;
   validationMessage?: string;
   /**
    * Set to true to sort object keys.

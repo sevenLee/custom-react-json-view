@@ -125,7 +125,7 @@ const getDefaultThemeStyling = theme => {
             };
         },
         'object-name': {
-            display: 'inline-block',
+            display: 'flex',
             color: colors.keyColor,
             letterSpacing: constants.keyLetterSpacing,
             fontStyle: constants.keyFontStyle,

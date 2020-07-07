@@ -55,6 +55,8 @@ class ReactJsonView extends React.PureComponent {
         onDelete: false,
         onAdd: false,
         onSelect: false,
+        onHighLight: false,
+        kbnHighLight: false,
         iconStyle: 'triangle',
         style: {},
         validationMessage: 'Validation Error',

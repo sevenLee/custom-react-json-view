@@ -1,20 +1,37 @@
-import React from 'react';
-import DataTypeLabel from './DataTypeLabel';
+import React from "react";
+import DataTypeLabel from "./DataTypeLabel";
 
 //theme
-import Theme from './../../themes/getStyle';
+import Theme from "./../../themes/getStyle";
 
 export default class extends React.PureComponent {
+  render() {
+    const type_name = "float";
+    const { props } = this;
+    let highLightHtmlStringValue = props.value; // default
 
-    render() {
-        const type_name = 'float';
-        const {props} = this;
-        return (
-            <div {...Theme(props.theme, 'float')}>
-                <DataTypeLabel type_name={type_name} {...props} />
-                {this.props.value}
-            </div>
-        );
+    if (props.onHighLight && props.kbnHighLight && props.variable) {
+      highLightHtmlStringValue = props.onHighLight(
+        props.kbnHighLight,
+        props.variable.name,
+        props.variable.value,
+        props.variable.value,
+        false
+      );
     }
-
+    return (
+      <div {...Theme(props.theme, "float")}>
+        <DataTypeLabel type_name={type_name} {...props} />
+        {highLightHtmlStringValue ? (
+          <span
+            dangerouslySetInnerHTML={{
+              __html: highLightHtmlStringValue.toString(),
+            }}
+          />
+        ) : (
+          this.props.value
+        )}
+      </div>
+    );
+  }
 }
