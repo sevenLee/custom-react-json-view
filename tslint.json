@@ -1,0 +1,35 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rulesDirectory": ["tslint-plugin-prettier"],
+  "rules": {
+    "jsx-alignment": true,
+    "arrow-return-shorthand": [true, "multiline"],
+    "no-console": false,
+    "ordered-imports": [false],
+    "object-literal-sort-keys": false,
+    "interface-name": [true, "always-prefix"],
+    "quotemark": [true, "double", "jsx-double"],
+    "typedef": [true, "parameter", "property-declaration", "member-variable-declaration"],
+    "jsx-boolean-value": [true, "never"],
+    "jsx-no-lambda": false,
+    "jsx-key": true,
+    "max-classes-per-file": false,
+    "member-access": [true, "no-public"],
+    "no-default-export": false,
+    "max-line-length": [true, 120],
+    "unnecessary-else": true,
+    "static-this": true,
+    "no-tautology-expression": true,
+    "no-duplicate-imports": true,
+    "array-type": false,
+    "variable-name": [true, "allow-leading-underscore", "allow-pascal-case"]
+  },
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin",
+        "ignoreDefinitionFiles": false
+      }
+    ]
+  }
+}

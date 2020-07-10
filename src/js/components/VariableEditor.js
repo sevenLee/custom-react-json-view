@@ -6,6 +6,7 @@ import dispatcher from "./../helpers/dispatcher";
 import parseInput from "./../helpers/parseInput";
 import stringifyVariable from "./../helpers/stringifyVariable";
 import CopyToClipboard from "./CopyToClipboard";
+import FilterController from './Filter/FilterController'
 
 //data type components
 import {
@@ -125,6 +126,7 @@ class VariableEditor extends React.PureComponent {
         {onEdit !== false && editMode == false ? this.getEditIcon() : null}
         {onDelete !== false && editMode == false ? this.getRemoveIcon() : null}
         {/* <div className="click-to-edit">add filter icon</div> */}
+        <FilterController />
       </div>
     );
   }

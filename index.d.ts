@@ -1,7 +1,16 @@
-import * as React from 'react';
+import * as React from "react";
 
 interface IResultItem {
   [key: string]: string | number | IResultItem | undefined | string[];
+}
+
+export interface FilterMetaData {
+  id: string;
+  label: string;
+  filterField: string;
+  filterValue: string;
+  operator: string;
+  popupFilter?: boolean;
 }
 
 export interface ReactJsonViewProps {
@@ -36,7 +45,7 @@ export interface ReactJsonViewProps {
    *
    * Default: {}
    */
-  iconStyle?: 'circle' | 'triangle' | 'square';
+  iconStyle?: "circle" | "triangle" | "square";
   /**
    * Set the indent-width for nested objects.
    *
@@ -126,8 +135,18 @@ export interface ReactJsonViewProps {
    *
    * Default: "Validation Error"
    */
-  onHighLight?: ((kbnHighLight: IResultItem, fieldName: string, fieldValue: any, fallback: any, useEllipsis: boolean) => any) | false;
+  onHighLight?:
+    | ((
+        kbnHighLight: IResultItem,
+        fieldName: string,
+        fieldValue: any,
+        fallback: any,
+        useEllipsis: boolean
+      ) => any)
+    | false;
   kbnHighLight?: IResultItem;
+  getCurrentfilterCollection: () => FilterMetaData[];
+  onAddFilter?: () => void;
   validationMessage?: string;
   /**
    * Set to true to sort object keys.
@@ -170,7 +189,7 @@ export interface CollapsedFieldProps {
   /**
    * The type of src. Can only be "array" or "object".
    */
-  type: 'array' | 'object';
+  type: "array" | "object";
   /**
    * The scopes above the current entry.
    */
@@ -222,7 +241,6 @@ export interface OnSelectProps {
    * List of keys representing the scopes above the selected entry.
    */
   namespace: Array<string | null>;
-
 }
 
 export type TypeDefaultValue = string | number | boolean | object;
@@ -247,43 +265,43 @@ export interface ThemeObject {
 }
 
 export type ThemeKeys =
-  | 'apathy'
-  | 'apathy:inverted'
-  | 'ashes'
-  | 'bespin'
-  | 'brewer'
-  | 'bright:inverted'
-  | 'bright'
-  | 'chalk'
-  | 'codeschool'
-  | 'colors'
-  | 'eighties'
-  | 'embers'
-  | 'flat'
-  | 'google'
-  | 'grayscale'
-  | 'grayscale:inverted'
-  | 'greenscreen'
-  | 'harmonic'
-  | 'hopscotch'
-  | 'isotope'
-  | 'marrakesh'
-  | 'mocha'
-  | 'monokai'
-  | 'ocean'
-  | 'paraiso'
-  | 'pop'
-  | 'railscasts'
-  | 'rjv-default'
-  | 'shapeshifter'
-  | 'shapeshifter:inverted'
-  | 'solarized'
-  | 'summerfruit'
-  | 'summerfruit:inverted'
-  | 'threezerotwofour'
-  | 'tomorrow'
-  | 'tube'
-  | 'twilight';
+  | "apathy"
+  | "apathy:inverted"
+  | "ashes"
+  | "bespin"
+  | "brewer"
+  | "bright:inverted"
+  | "bright"
+  | "chalk"
+  | "codeschool"
+  | "colors"
+  | "eighties"
+  | "embers"
+  | "flat"
+  | "google"
+  | "grayscale"
+  | "grayscale:inverted"
+  | "greenscreen"
+  | "harmonic"
+  | "hopscotch"
+  | "isotope"
+  | "marrakesh"
+  | "mocha"
+  | "monokai"
+  | "ocean"
+  | "paraiso"
+  | "pop"
+  | "railscasts"
+  | "rjv-default"
+  | "shapeshifter"
+  | "shapeshifter:inverted"
+  | "solarized"
+  | "summerfruit"
+  | "summerfruit:inverted"
+  | "threezerotwofour"
+  | "tomorrow"
+  | "tube"
+  | "twilight";
 
 declare const ReactJson: React.ComponentType<ReactJsonViewProps>;
 export default ReactJson;
