@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { hasData } from "../../helpers/util";
+import { hasData, getBy } from "../../helpers/util";
 
 const FilterInIcon = (props) => {
   const id = "filterIn";
@@ -161,8 +161,6 @@ export default class FilterController extends React.PureComponent {
 
     if (props.fieldMeta) {
       const { fieldMeta } = props;
-      console.log("### props:", this.props);
-      console.log("### variable:", this.props.variable);
 
       let fieldName = "";
       if (fieldMeta.namespace.length > 1) {
@@ -191,20 +189,22 @@ export default class FilterController extends React.PureComponent {
         if (needDisabledField && this.enableFilter) this.enableFilter = false;
       }
     }
-
-    console.log("### [FilterController] this.fieldName:", this.fieldName);
-
+    // fetch currentFilter, but just show popup filter
+    const popupFilterCollection = getBy("reject")({ popupFilter: false })(
+      props.filterOptions.currentfilterCollection
+    );
     // @ts-ignore
-    if (hasData(props.filterOptions.currentfilterCollection)) {
-      props.filterOptions.currentfilterCollection.forEach((currentFilter) => {
+    if (hasData(popupFilterCollection)) {
+      // @ts-ignore
+      popupFilterCollection.forEach((popupFilter) => {
         if (
-          currentFilter.filterField === this.fieldName &&
-          currentFilter.filterValue === this.fieldValue
+          popupFilter.filterField === this.fieldName &&
+          popupFilter.filterValue === this.fieldValue
         ) {
           // fetch current Filter
           this.state = {
-            filterIn: currentFilter.operator === "is" ? true : false,
-            filterOut: currentFilter.operator === "isnot" ? true : false,
+            filterIn: popupFilter.operator === "is" ? true : false,
+            filterOut: popupFilter.operator === "isnot" ? true : false,
           };
         }
       });

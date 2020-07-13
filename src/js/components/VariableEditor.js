@@ -32,7 +32,6 @@ import Theme from "./../themes/getStyle";
 class VariableEditor extends React.PureComponent {
   constructor(props) {
     super(props);
-    console.log("### VariableEditor props:", props);
     this.state = {
       editMode: false,
       editValue: "",
@@ -46,7 +45,6 @@ class VariableEditor extends React.PureComponent {
   }
 
   handleUpdateFilterStatus = (hasFilter) => {
-    console.log("### [VariableEditor] hasFilter:", hasFilter);
     this.setState({ hasFilter });
   };
 
@@ -69,7 +67,6 @@ class VariableEditor extends React.PureComponent {
       Tooltip
     } = this.props;
 
-    console.log("### [VariableEditor] this.props:", this.props);
     const { editMode } = this.state;
 
     const fieldMeta = {
