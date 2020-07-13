@@ -22,4 +22,8 @@
         // "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true
     },
+    "javascript.implicitProjectConfig.checkJs": true,
+    "tslint.exclude": "./**/*.js",
+    "tslint.configFile": "./tslint.json",
+    "tslint.alwaysShowRuleFailuresAsWarnings": false,
 }

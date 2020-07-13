@@ -10,7 +10,10 @@
         display: none;
     }
     .click-to-edit {
-        display: none;
+        display: inline-block;
+        &:not(.hasFilter){
+            display: none;
+        }
     }
 
     .object-key-val {

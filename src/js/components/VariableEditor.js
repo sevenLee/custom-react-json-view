@@ -6,7 +6,7 @@ import dispatcher from "./../helpers/dispatcher";
 import parseInput from "./../helpers/parseInput";
 import stringifyVariable from "./../helpers/stringifyVariable";
 import CopyToClipboard from "./CopyToClipboard";
-import FilterController from './Filter/FilterController'
+import FilterController from "./Filter/FilterController";
 
 //data type components
 import {
@@ -22,6 +22,7 @@ import {
   JsonUndefined,
 } from "./DataTypes/DataTypes";
 
+
 //clibboard icon
 import { Edit, CheckCircle, RemoveCircle as Remove } from "./icons";
 
@@ -31,6 +32,7 @@ import Theme from "./../themes/getStyle";
 class VariableEditor extends React.PureComponent {
   constructor(props) {
     super(props);
+    console.log("### VariableEditor props:", props);
     this.state = {
       editMode: false,
       editValue: "",
@@ -39,8 +41,14 @@ class VariableEditor extends React.PureComponent {
         type: false,
         value: null,
       },
+      hasFilter: false,
     };
   }
+
+  handleUpdateFilterStatus = (hasFilter) => {
+    console.log("### [VariableEditor] hasFilter:", hasFilter);
+    this.setState({ hasFilter });
+  };
 
   render() {
     const {
@@ -55,11 +63,20 @@ class VariableEditor extends React.PureComponent {
       onEdit,
       onDelete,
       onSelect,
-      rjvId
+      rjvId,
+      onClickFilter,
+      filterOptions,
+      Tooltip
     } = this.props;
 
-    // console.log("### [VariableEditor] this.props:", this.props);
+    console.log("### [VariableEditor] this.props:", this.props);
     const { editMode } = this.state;
+
+    const fieldMeta = {
+      variable,
+      type,
+      namespace,
+    };
 
     return (
       <div
@@ -68,6 +85,7 @@ class VariableEditor extends React.PureComponent {
         })}
         class="variable-row"
         key={variable.name}
+        style={{ fontWeight: this.state.hasFilter ? 800 : 500 }}
       >
         {type == "array" ? (
           <span
@@ -125,8 +143,13 @@ class VariableEditor extends React.PureComponent {
         ) : null}
         {onEdit !== false && editMode == false ? this.getEditIcon() : null}
         {onDelete !== false && editMode == false ? this.getRemoveIcon() : null}
-        {/* <div className="click-to-edit">add filter icon</div> */}
-        <FilterController />
+        <FilterController
+          fieldMeta={fieldMeta}
+          onClickFilter={onClickFilter}
+          filterOptions={filterOptions}
+          Tooltip={Tooltip}
+          onUpdateFilterStatus={this.handleUpdateFilterStatus}
+        />
       </div>
     );
   }
@@ -135,9 +158,9 @@ class VariableEditor extends React.PureComponent {
     const { variable, theme } = this.props;
 
     return (
-      <div class="click-to-edit" style={{ verticalAlign: "top" }}>
+      <div className="click-to-edit" style={{ verticalAlign: "top" }}>
         <Edit
-          class="click-to-edit-icon"
+          className="click-to-edit-icon"
           {...Theme(theme, "editVarIcon")}
           onClick={() => {
             this.prepopInput(variable);
@@ -166,7 +189,7 @@ class VariableEditor extends React.PureComponent {
     const { variable, namespace, theme, rjvId } = this.props;
 
     return (
-      <div class="click-to-remove" style={{ verticalAlign: "top" }}>
+      <div className="click-to-remove" style={{ verticalAlign: "top" }}>
         <Remove
           class="click-to-remove-icon"
           {...Theme(theme, "removeVarIcon")}
@@ -236,7 +259,7 @@ class VariableEditor extends React.PureComponent {
           );
         }
         return (
-          <div class="object-value">
+          <div className="object-value">
             {highLightHtmlStringValue ? (
               <span
                 dangerouslySetInnerHTML={{

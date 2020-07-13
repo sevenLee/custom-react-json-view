@@ -13,6 +13,11 @@ export interface FilterMetaData {
   popupFilter?: boolean;
 }
 
+interface JSONViewFilterOptions {
+  disabledFields: string[];
+  currentfilterCollection: FilterMetaData[];
+}
+
 export interface ReactJsonViewProps {
   /**
    * This property contains your input JSON.
@@ -145,8 +150,9 @@ export interface ReactJsonViewProps {
       ) => any)
     | false;
   kbnHighLight?: IResultItem;
-  getCurrentfilterCollection: () => FilterMetaData[];
-  onAddFilter?: () => void;
+  filterOptions?: JSONViewFilterOptions;
+  onClickFilter?: () => void;
+  Tooltip?: any;
   validationMessage?: string;
   /**
    * Set to true to sort object keys.

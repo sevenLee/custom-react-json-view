@@ -23,13 +23,5 @@
     "no-duplicate-imports": true,
     "array-type": false,
     "variable-name": [true, "allow-leading-underscore", "allow-pascal-case"]
-  },
-  "compilerOptions": {
-    "plugins": [
-      {
-        "name": "typescript-tslint-plugin",
-        "ignoreDefinitionFiles": false
-      }
-    ]
   }
 }

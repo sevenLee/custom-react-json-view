@@ -48,7 +48,7 @@ export default class extends React.PureComponent {
     let highLightHtmlStringValue = value; // default
 
     const fieldName =
-      type === "array"
+      props.namespace.length > 1
         ? props.namespace[props.namespace.length - 1]
         : props.variable.name;
 
