@@ -161,15 +161,37 @@ export default class FilterController extends React.PureComponent {
 
     if (props.fieldMeta) {
       const { fieldMeta } = props;
+      console.log("#### fieldMeta:", fieldMeta);
 
       let fieldName = "";
       if (fieldMeta.namespace.length > 1) {
+        const names = fieldMeta.namespace.slice(1);
+        fieldName = names.join(".");
         if (!fieldMeta.type) {
-          this.enableFilter = false;
+          /*
+            for object:
+            testObj {
+              test_elem1: '11111'
+            }
+          */
+          fieldName = fieldName + "." + fieldMeta.variable.name;
+          // this.enableFilter = false;
         }
-        fieldName = fieldMeta.namespace[fieldMeta.namespace.length - 1];
+
+        if (fieldMeta.type === "array") {
+          if (typeof fieldMeta.variable.value === "number") {
+            // cannot support number []
+            this.enableFilter = false;
+          }
+        }
+
+        console.log("### [FilterController] fieldName:", fieldName);
       } else {
         fieldName = fieldMeta.variable.name;
+      }
+
+      if(fieldMeta.variable.value === null) {
+        this.enableFilter = false;
       }
 
       this.fieldValue = fieldMeta.variable.value;

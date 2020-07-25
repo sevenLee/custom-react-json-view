@@ -47,10 +47,16 @@ export default class extends React.PureComponent {
     let style = { style: { cursor: "default" } };
     let highLightHtmlStringValue = value; // default
 
-    const fieldName =
-      props.namespace.length > 1
-        ? props.namespace[props.namespace.length - 1]
-        : props.variable.name;
+    let fieldName = "";
+    if (props.namespace.length > 1) {
+      const names = props.namespace.slice(1);
+      fieldName = names.join(".");
+      if (!props.type) {
+        fieldName = fieldName + "." + props.variable.name;
+      }
+    } else {
+      fieldName = props.variable.name;
+    }
 
     if (props.onHighLight && props.kbnHighLight && props.variable) {
       highLightHtmlStringValue = props.onHighLight(
