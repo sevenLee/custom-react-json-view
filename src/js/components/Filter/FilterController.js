@@ -161,7 +161,6 @@ export default class FilterController extends React.PureComponent {
 
     if (props.fieldMeta) {
       const { fieldMeta } = props;
-      console.log("#### fieldMeta:", fieldMeta);
 
       let fieldName = "";
       if (fieldMeta.namespace.length > 1) {
@@ -185,7 +184,7 @@ export default class FilterController extends React.PureComponent {
           }
         }
 
-        console.log("### [FilterController] fieldName:", fieldName);
+        console.debug("### [FilterController] fieldName:", fieldName);
       } else {
         fieldName = fieldMeta.variable.name;
       }
