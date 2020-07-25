@@ -79,10 +79,11 @@ class VariableEditor extends React.PureComponent {
       <div
         {...Theme(theme, "objectKeyVal", {
           paddingLeft: indentWidth * singleIndent,
+          fontWeight: this.state.hasFilter ? 800 : 500
         })}
         class="variable-row"
         key={variable.name}
-        style={{ fontWeight: this.state.hasFilter ? 800 : 500 }}
+        // style={{ fontWeight: this.state.hasFilter ? 800 : 500 }}
       >
         {type == "array" ? (
           <span
