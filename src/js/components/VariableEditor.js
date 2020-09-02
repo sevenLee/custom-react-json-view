@@ -22,7 +22,6 @@ import {
   JsonUndefined,
 } from "./DataTypes/DataTypes";
 
-
 //clibboard icon
 import { Edit, CheckCircle, RemoveCircle as Remove } from "./icons";
 
@@ -64,8 +63,11 @@ class VariableEditor extends React.PureComponent {
       rjvId,
       onClickFilter,
       filterOptions,
-      Tooltip
+      Tooltip,
+      i18n,
     } = this.props;
+
+    // console.debug('### >>>>> this.props:', this.props)
 
     const { editMode } = this.state;
 
@@ -79,7 +81,7 @@ class VariableEditor extends React.PureComponent {
       <div
         {...Theme(theme, "objectKeyVal", {
           paddingLeft: indentWidth * singleIndent,
-          fontWeight: this.state.hasFilter ? 800 : 500
+          fontWeight: this.state.hasFilter ? 800 : 500,
         })}
         class="variable-row"
         key={variable.name}
@@ -147,6 +149,7 @@ class VariableEditor extends React.PureComponent {
           filterOptions={filterOptions}
           Tooltip={Tooltip}
           onUpdateFilterStatus={this.handleUpdateFilterStatus}
+          i18n={i18n}
         />
       </div>
     );

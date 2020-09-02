@@ -5,6 +5,7 @@ import { prop } from "ramda";
 
 const FilterInIcon = (props) => {
   const id = "filterIn";
+  const i18n = props.i18n || {};
 
   return (
     <div
@@ -24,7 +25,7 @@ const FilterInIcon = (props) => {
         justifyContent: "center",
       }}
     >
-      <props.Tooltip content={props.i18n.filterForValue}>
+      <props.Tooltip content={i18n.filterForValue}>
         <div
           style={{
             width: 24,
@@ -76,6 +77,7 @@ const FilterInIcon = (props) => {
 
 const FilterOutIcon = (props) => {
   const id = "filterOut";
+  const i18n = props.i18n || {};
 
   return (
     <div
@@ -95,7 +97,7 @@ const FilterOutIcon = (props) => {
         justifyContent: "center",
       }}
     >
-      <props.Tooltip content={props.i18n.filterOutValue}>
+      <props.Tooltip content={i18n.filterOutValue}>
         <div
           style={{
             width: 24,
@@ -190,7 +192,7 @@ export default class FilterController extends React.PureComponent {
         fieldName = fieldMeta.variable.name;
       }
 
-      if(fieldMeta.variable.value === null) {
+      if (fieldMeta.variable.value === null) {
         this.enableFilter = false;
       }
 
@@ -280,12 +282,14 @@ export default class FilterController extends React.PureComponent {
             onClick={this.handleClick}
             disabled={!this.enableFilter}
             active={this.state.filterIn}
+            i18n={this.props.i18n}
           />
           <FilterOutIcon
             Tooltip={this.props.Tooltip}
             onClick={this.handleClick}
             disabled={!this.enableFilter}
             active={this.state.filterOut}
+            i18n={this.props.i18n}
           />
         </div>
       </div>
