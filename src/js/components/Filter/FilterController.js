@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { hasData, getBy } from "../../helpers/util";
+import { prop } from "ramda";
 
 const FilterInIcon = (props) => {
   const id = "filterIn";
@@ -23,7 +24,7 @@ const FilterInIcon = (props) => {
         justifyContent: "center",
       }}
     >
-      <props.Tooltip content={"Filter for value"}>
+      <props.Tooltip content={props.i18n.filterForValue}>
         <div
           style={{
             width: 24,
@@ -94,7 +95,7 @@ const FilterOutIcon = (props) => {
         justifyContent: "center",
       }}
     >
-      <props.Tooltip content={"Filter out value"}>
+      <props.Tooltip content={props.i18n.filterOutValue}>
         <div
           style={{
             width: 24,

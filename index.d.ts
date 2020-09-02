@@ -8,9 +8,10 @@ export interface FilterMetaData {
   id: string;
   label: string;
   filterField: string;
-  filterValue: string;
+  filterValue: string | number;
   operator: string;
-  popupFilter?: boolean;
+  popupFilter: boolean;
+  action?: string;
 }
 
 interface JSONViewFilterOptions {
@@ -151,7 +152,8 @@ export interface ReactJsonViewProps {
     | false;
   kbnHighLight?: IResultItem;
   filterOptions?: JSONViewFilterOptions;
-  onClickFilter?: () => void;
+  i18n: any;
+  onClickFilter?: (meta: any) => void;
   Tooltip?: any;
   validationMessage?: string;
   /**

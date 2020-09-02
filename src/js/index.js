@@ -56,6 +56,7 @@ class ReactJsonView extends React.PureComponent {
     onSelect: false,
     onHighLight: false,
     kbnHighLight: false,
+    i18n: {},
     filterOptions: {},
     Tooltip: false,
     onClickFilter: false,
